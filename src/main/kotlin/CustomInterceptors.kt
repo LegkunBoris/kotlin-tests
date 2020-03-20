@@ -4,6 +4,7 @@ import org.springframework.cloud.security.oauth2.client.feign.OAuth2FeignRequest
 import org.springframework.http.MediaType
 import org.springframework.security.oauth2.client.DefaultOAuth2ClientContext
 import org.springframework.security.oauth2.client.resource.OAuth2ProtectedResourceDetails
+import org.springframework.security.oauth2.client.token.grant.client.ClientCredentialsResourceDetails
 import org.springframework.security.oauth2.client.token.grant.password.ResourceOwnerPasswordResourceDetails
 
 fun requestInterceptor(): RequestInterceptor {
@@ -18,8 +19,8 @@ fun oauth2FeignRequestInterceptor(): RequestInterceptor? {
   return OAuth2FeignRequestInterceptor(DefaultOAuth2ClientContext(), resource())
 }
 fun resource(): OAuth2ProtectedResourceDetails {
-  val resourceDetails = ResourceOwnerPasswordResourceDetails()
-  resourceDetails.accessTokenUri = "http://localhost:8081/oauth/token"
+  val resourceDetails = ClientCredentialsResourceDetails()
+  resourceDetails.accessTokenUri = "http://localhost:8081/sso-auth-server/oauth/token"
   resourceDetails.clientId = "boris-client"
   resourceDetails.clientSecret = "boris-secret"
   resourceDetails.grantType = "client_credentials"

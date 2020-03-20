@@ -17,8 +17,8 @@ class AuthServerTests {
     val authServerClient =
         FeignFactory().createWithClientCredentials(
             AuthServerApi::class.java,
-            "http://localhost:8080/sso-auth-server")
-    val res = authServerClient.token()
+            "http://localhost:8080/")
+    val res = authServerClient.whoami()
     assertEquals(true, true)
   }
 
