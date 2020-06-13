@@ -23,7 +23,7 @@ class AuthServerTests {
       FeignFactory().create(AuthServerApi::class.java, "http://localhost:8081/sso-auth-server")
 
   @Test
-  fun `jwks endpoint accessible`() {
+  fun `jwks endpoint accessible and has keys`() {
     val response = authServerClient.getJwkKeys()
     assert(response.containsKey("keys"))
     val keys = response["keys"] as ArrayList<*>
